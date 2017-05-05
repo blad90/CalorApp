@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		E10D1C711EBD0DA800434AA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10D1C701EBD0DA800434AA5 /* AppDelegate.swift */; };
-		E10D1C731EBD0DA800434AA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10D1C721EBD0DA800434AA5 /* ViewController.swift */; };
 		E10D1C761EBD0DA800434AA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E10D1C741EBD0DA800434AA5 /* Main.storyboard */; };
 		E10D1C781EBD0DA800434AA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E10D1C771EBD0DA800434AA5 /* Assets.xcassets */; };
 		E10D1C7B1EBD0DA800434AA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E10D1C791EBD0DA800434AA5 /* LaunchScreen.storyboard */; };
@@ -18,12 +17,13 @@
 		E10D1C8E1EBD150B00434AA5 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E10D1C8D1EBD150B00434AA5 /* SystemConfiguration.framework */; };
 		E10D1C931EBD1B9400434AA5 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E10D1C911EBD1B9400434AA5 /* libsqlite3.dylib */; };
 		E10D1C941EBD1B9400434AA5 /* libstdc++.6.0.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E10D1C921EBD1B9400434AA5 /* libstdc++.6.0.9.dylib */; };
+		E10D1C981EBD30E500434AA5 /* green_apple.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E10D1C971EBD30E500434AA5 /* green_apple.jpg */; };
+		E10D1C9A1EBD310B00434AA5 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10D1C991EBD310B00434AA5 /* LoginVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		E10D1C6D1EBD0DA800434AA5 /* Calorapp - Calories Tracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calorapp - Calories Tracker.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10D1C701EBD0DA800434AA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E10D1C721EBD0DA800434AA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E10D1C751EBD0DA800434AA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E10D1C771EBD0DA800434AA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E10D1C7A1EBD0DA800434AA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -34,6 +34,8 @@
 		E10D1C8D1EBD150B00434AA5 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E10D1C911EBD1B9400434AA5 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = ../../../../../usr/lib/libsqlite3.dylib; sourceTree = "<group>"; };
 		E10D1C921EBD1B9400434AA5 /* libstdc++.6.0.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libstdc++.6.0.9.dylib"; path = "../../../../../usr/lib/libstdc++.6.0.9.dylib"; sourceTree = "<group>"; };
+		E10D1C971EBD30E500434AA5 /* green_apple.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = green_apple.jpg; sourceTree = "<group>"; };
+		E10D1C991EBD310B00434AA5 /* LoginVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,8 +75,9 @@
 		E10D1C6F1EBD0DA800434AA5 /* Calorapp - Calories Tracker */ = {
 			isa = PBXGroup;
 			children = (
+				E10D1C9B1EBD312000434AA5 /* VC */,
+				E10D1C951EBD30C500434AA5 /* Resources */,
 				E10D1C701EBD0DA800434AA5 /* AppDelegate.swift */,
-				E10D1C721EBD0DA800434AA5 /* ViewController.swift */,
 				E10D1C741EBD0DA800434AA5 /* Main.storyboard */,
 				E10D1C771EBD0DA800434AA5 /* Assets.xcassets */,
 				E10D1C791EBD0DA800434AA5 /* LaunchScreen.storyboard */,
@@ -94,6 +97,31 @@
 				E10D1C881EBD134C00434AA5 /* Parse.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E10D1C951EBD30C500434AA5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E10D1C961EBD30D100434AA5 /* Images */,
+			);
+			name = Resources;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		E10D1C961EBD30D100434AA5 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				E10D1C971EBD30E500434AA5 /* green_apple.jpg */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		E10D1C9B1EBD312000434AA5 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				E10D1C991EBD310B00434AA5 /* LoginVC.swift */,
+			);
+			name = VC;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,6 +184,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E10D1C981EBD30E500434AA5 /* green_apple.jpg in Resources */,
 				E10D1C7B1EBD0DA800434AA5 /* LaunchScreen.storyboard in Resources */,
 				E10D1C781EBD0DA800434AA5 /* Assets.xcassets in Resources */,
 				E10D1C761EBD0DA800434AA5 /* Main.storyboard in Resources */,
@@ -169,7 +198,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E10D1C731EBD0DA800434AA5 /* ViewController.swift in Sources */,
+				E10D1C9A1EBD310B00434AA5 /* LoginVC.swift in Sources */,
 				E10D1C711EBD0DA800434AA5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
