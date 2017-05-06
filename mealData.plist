@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>foodItems</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Pizza slice</string>
+			<key>calories</key>
+			<string>285</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Rice (cup)</string>
+			<key>calories</key>
+			<string>206</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Hamburger</string>
+			<key>calories</key>
+			<string>259</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Soup (cup)</string>
+			<key>calories</key>
+			<string>30</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Orange juice</string>
+			<key>calories</key>
+			<string>39</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>Salsarita burrito</string>
+			<key>calories</key>
+			<string>310</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>pizza slice</string>
+			<key>calories</key>
+			<string>285</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>pizza slice</string>
+			<key>calories</key>
+			<string>285</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>pizza slice</string>
+			<key>calories</key>
+			<string>285</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>pizza slice</string>
+			<key>calories</key>
+			<string>285</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>pizza slice</string>
+			<key>calories</key>
+			<string>285</string>
+			<key>imageName</key>
+			<string>image0.jpg</string>
+			<key>imageSize</key>
+			<string>187000</string>
+			<key>imageType</key>
+			<string>image/jpeg</string>
+			<key>imageLink</key>
+			<string>http://www.ist.rit.edu/~bdf/454/npimages/image0.jpg</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -11,14 +11,38 @@ import Parse
 
 class LoginVC: UIViewController {
 
-    
+    var currentUser = PFUser.current()
     @IBOutlet var usernameField: UITextField!
     @IBOutlet var passwordField: UITextField!
     @IBOutlet var errorLabel: UILabel!
+    @IBOutlet var notYouLabel: UILabel!
     
     @IBAction func logInButton(_ sender: UIButton) {
         logIn()
     }
+    
+    @IBAction func logOutButton(_ sender: UIButton) {
+        
+        PFUser.logOut()
+        currentUser = PFUser.current()
+        
+        usernameField.text = ""
+        usernameField.isEnabled = true
+        usernameField.textColor = UIColor.black
+        
+        passwordField.text = ""
+        passwordField.isEnabled = true
+        passwordField.textColor = UIColor.black
+        
+        notYouLabel.text = ""
+        logOut.isHidden = true
+        logInButton.isHidden = false
+        signUpButton.isHidden = false
+    }
+    
+    @IBOutlet var signUpButton: UIButton!
+    @IBOutlet var logInButton: UIButton!
+    @IBOutlet var logOut: UIButton!
     @IBAction func signUpButton(_ sender: UIButton) {
         performSegue(withIdentifier: "toSignUpSegue", sender: self)
     }
@@ -35,14 +59,36 @@ class LoginVC: UIViewController {
             }
         } else {
             print("Logged In")
+            self.performSegue(withIdentifier: "loggedInSegue", sender: nil)
+
         }
-        
+    }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        currentUser = PFUser.current()
+        if currentUser != nil {
+            print("Logged In")
+            performSegue(withIdentifier: "loggedInSegue", sender: nil)
+            logInButton.isHidden = true
+            signUpButton.isHidden = true
+            usernameField.text = currentUser?.username
+            usernameField.isEnabled = false
+            usernameField.textColor = UIColor.gray
+            
+            passwordField.text = "******"
+            passwordField.isEnabled = false
+            passwordField.textColor = UIColor.gray
+            
+            notYouLabel.text = "Not \(String(describing: (currentUser!.username)!))?"
+            
+        } else {
+            print("Need to log in")
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     override func didReceiveMemoryWarning() {
