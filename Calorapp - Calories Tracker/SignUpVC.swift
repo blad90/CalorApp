@@ -17,9 +17,14 @@ class SignUpVC: UIViewController {
     @IBOutlet var emailField: UITextField!
     @IBOutlet var dateOfBirthField: UITextField!
     @IBOutlet var countryField: UITextField!
+    var currentUser = PFUser.current()
     
     @IBAction func signUpButton(_ sender: UIButton) {
         signUp()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @IBOutlet var errorLabel: UILabel!
@@ -30,30 +35,31 @@ class SignUpVC: UIViewController {
     }
     
     func signUp() {
-       let user = PFUser()
-        user["fullName"] = fullNameField.text
-        user.username = usernameField.text
-        user.password = passwordField.text
-        user.email = emailField.text
-        user["dateOfBirth"] = dateOfBirthField.text
-        user["country"] = countryField.text
-        
-        user.signUpInBackground { (success, error) in
+            let user = PFUser()
+            user["fullName"] = fullNameField.text
+            user.username = usernameField.text
+            user.password = passwordField.text
+            user.email = emailField.text
+            user["dateOfBirth"] = dateOfBirthField.text
+            user["country"] = countryField.text
             
-            if error != nil {
-            
-                var displayError = "Try again later."
+            user.signUpInBackground { (success, error) in
                 
-                if let errorMsg = error?.localizedDescription {
-                    displayError = errorMsg
-                    self.errorLabel.text = displayError
+                if error != nil {
+                    
+                    var displayError = "Try again later."
+                    
+                    if let errorMsg = error?.localizedDescription {
+                        displayError = errorMsg
+                        self.errorLabel.text = displayError
+                        self.performSegue(withIdentifier: "toLoginSegue", sender: nil)
+                    }
+                } else {
+                    self.cleanUpFields()
+                    self.performSegue(withIdentifier: "toLoginSegue", sender: nil)
+                    print("Signed Up!")
                 }
-            } else {
-                self.cleanUpFields()
-                self.performSegue(withIdentifier: "toLoginSegue", sender: self)
-                print("Signed Up!")
             }
-    }
 }
     
     func cleanUpFields() {

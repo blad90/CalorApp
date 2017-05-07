@@ -14,7 +14,6 @@ class LoginVC: UIViewController {
     var currentUser = PFUser.current()
     @IBOutlet var usernameField: UITextField!
     @IBOutlet var passwordField: UITextField!
-    @IBOutlet var errorLabel: UILabel!
     @IBOutlet var notYouLabel: UILabel!
     
     @IBAction func logInButton(_ sender: UIButton) {
@@ -55,7 +54,13 @@ class LoginVC: UIViewController {
             
             if let errorMsg = error?.localizedDescription {
                 displayError = errorMsg
-                self.errorLabel.text = displayError
+                
+                let alert = UIAlertController(title: "Error", message: "\(displayError) Please try again.", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+                    
+                })
+                self.present(alert, animated: true)
             }
         } else {
             print("Logged In")
@@ -65,8 +70,13 @@ class LoginVC: UIViewController {
     }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         currentUser = PFUser.current()
+        
         if currentUser != nil {
             print("Logged In")
             performSegue(withIdentifier: "loggedInSegue", sender: nil)

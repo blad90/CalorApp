@@ -20,6 +20,8 @@ class InfoTableVC: UITableViewController {
         self.performSegue(withIdentifier: "loggedOutSegue", sender: nil)
         
     }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +64,26 @@ class InfoTableVC: UITableViewController {
         //cell.accessoryType = .disclosureIndicator
 
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let index = tableView.indexPathForSelectedRow
+        let currentCell = tableView.cellForRow(at: index!)!
+        
+        if let cell = tableView.cellForRow(at: indexPath) {
+            
+            if cell.accessoryType == .checkmark {
+                cell.accessoryType = .none
+            } else {
+                cell.accessoryType = .checkmark
+            }
+            
+        }
+        
+        let foodItemSelectedName = currentCell.textLabel!.text
+        let foodItemSelectedCalorie = currentCell.detailTextLabel!.text
+        
+        print("Selected: \(String(describing: foodItemSelectedName!)) with \(String(describing: foodItemSelectedCalorie!))")
     }
 
     /*
