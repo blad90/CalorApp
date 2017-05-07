@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import Charts
 
 class StatsVC: UIViewController {
 
+    //@IBOutlet var barChartView: BarChartView!
+    @IBOutlet var lineChartView: LineChartView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        lineChartView.noDataText = "No data available"
     }
 
     override func didReceiveMemoryWarning() {
