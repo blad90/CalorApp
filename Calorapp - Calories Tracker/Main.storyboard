@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="CalorApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVR-hv-gpg">
-                                <rect key="frame" x="84" y="28" width="152" height="64"/>
+                                <rect key="frame" x="16" y="28" width="288" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="40"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,23 +86,6 @@
                                     <segue destination="uUa-oY-J08" kind="show" identifier="toSignUpSegue" id="orL-Wm-2UT"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rv8-2p-6W1">
-                                <rect key="frame" x="16" y="384" width="142" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMd-iR-kpk">
-                                <rect key="frame" x="166" y="382" width="48" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Logout">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logOutButton:" destination="bHe-ew-HZn" eventType="touchUpInside" id="Qx0-Ma-9Ye"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.52549019607843139" green="0.67450980392156867" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -115,8 +98,6 @@
                     <navigationItem key="navigationItem" id="uDm-W5-Kf9"/>
                     <connections>
                         <outlet property="logInButton" destination="xXg-jc-QnO" id="Cye-Ko-5Y5"/>
-                        <outlet property="logOut" destination="GMd-iR-kpk" id="w0n-90-I4u"/>
-                        <outlet property="notYouLabel" destination="Rv8-2p-6W1" id="2vR-lq-7Fl"/>
                         <outlet property="passwordField" destination="EcW-tV-Fqn" id="iNl-Zd-23e"/>
                         <outlet property="signUpButton" destination="vp8-0d-Kk3" id="gQe-SD-c0w"/>
                         <outlet property="usernameField" destination="6BG-eQ-Yxa" id="rgZ-dl-wue"/>
@@ -125,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k9A-rc-EST" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1404" y="1175"/>
+            <point key="canvasLocation" x="-1404.375" y="1174.6478873239437"/>
         </scene>
         <!--Sign UpVC-->
         <scene sceneID="sTW-Eo-Y2j">

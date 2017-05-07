@@ -54,7 +54,7 @@ class SignUpVC: UIViewController {
                         
                         let alert = UIAlertController(title: "Error", message: "\(displayError)", preferredStyle: .alert)
                         
-                        alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+                        alert.addAction(UIAlertAction(title: "Log In", style: .default) { action in
                             self.performSegue(withIdentifier: "toLoginSegue", sender: nil)
                         })
                         self.present(alert, animated: true)

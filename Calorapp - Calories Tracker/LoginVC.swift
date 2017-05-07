@@ -14,7 +14,6 @@ class LoginVC: UIViewController {
     var currentUser = PFUser.current()
     @IBOutlet var usernameField: UITextField!
     @IBOutlet var passwordField: UITextField!
-    @IBOutlet var notYouLabel: UILabel!
     
     @IBAction func logInButton(_ sender: UIButton) {
         logIn()
@@ -33,15 +32,12 @@ class LoginVC: UIViewController {
         passwordField.isEnabled = true
         passwordField.textColor = UIColor.black
         
-        notYouLabel.text = ""
-        logOut.isHidden = true
         logInButton.isHidden = false
         signUpButton.isHidden = false
     }
     
     @IBOutlet var signUpButton: UIButton!
     @IBOutlet var logInButton: UIButton!
-    @IBOutlet var logOut: UIButton!
     @IBAction func signUpButton(_ sender: UIButton) {
         performSegue(withIdentifier: "toSignUpSegue", sender: self)
     }
@@ -89,8 +85,6 @@ class LoginVC: UIViewController {
             passwordField.text = "******"
             passwordField.isEnabled = false
             passwordField.textColor = UIColor.gray
-            
-            notYouLabel.text = "Not \(String(describing: (currentUser!.username)!))?"
             
         } else {
             print("Need to log in")
