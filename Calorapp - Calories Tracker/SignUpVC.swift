@@ -51,8 +51,14 @@ class SignUpVC: UIViewController {
                     
                     if let errorMsg = error?.localizedDescription {
                         displayError = errorMsg
-                        self.errorLabel.text = displayError
-                        self.performSegue(withIdentifier: "toLoginSegue", sender: nil)
+                        
+                        let alert = UIAlertController(title: "Error", message: "\(displayError)", preferredStyle: .alert)
+                        
+                        alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+                            self.performSegue(withIdentifier: "toLoginSegue", sender: nil)
+                        })
+                        self.present(alert, animated: true)
+                        
                     }
                 } else {
                     self.cleanUpFields()

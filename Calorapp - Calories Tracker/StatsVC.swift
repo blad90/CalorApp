@@ -17,9 +17,30 @@ class StatsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        lineChartView.noDataText = "No data available"
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0]
+        
+        setChart(dataPoints: months, values: unitsSold)
+        lineChartView.xAxis.labelPosition = .bottom
+        lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
     }
 
+    func setChart(dataPoints: [String], values: [Double]) {
+        
+        var dataEntries: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(x: Double(i), y:values[i])
+            dataEntries.append(dataEntry)
+        }
+        
+        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Units Sold")
+        let lineChartData = LineChartData()
+        lineChartData.addDataSet(lineChartDataSet)
+        lineChartView.data = lineChartData
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -238,13 +238,6 @@
                                     <action selector="signUpButton:" destination="uUa-oY-J08" eventType="touchUpInside" id="VAe-6W-Ts0"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJl-MU-Nzz">
-                                <rect key="frame" x="16" y="125" width="304" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.4392156862745098" green="0.70980392156862748" blue="0.85882352941176465" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -302,7 +295,6 @@
                         <outlet property="countryField" destination="5yg-59-60x" id="P5R-Sz-q1N"/>
                         <outlet property="dateOfBirthField" destination="EWx-ex-24D" id="wz0-2W-MBg"/>
                         <outlet property="emailField" destination="OD9-ha-m6S" id="jgc-A7-d3I"/>
-                        <outlet property="errorLabel" destination="QJl-MU-Nzz" id="6Pb-vq-lBM"/>
                         <outlet property="fullNameField" destination="1d0-9Y-c8K" id="sRp-lS-Nfg"/>
                         <outlet property="passwordField" destination="Wub-uo-apN" id="o0s-E6-Brf"/>
                         <outlet property="usernameField" destination="3qO-SN-0sU" id="IdM-Lk-OIN"/>
@@ -728,6 +720,6 @@
         <image name="stats.png" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="QmF-Yh-O57"/>
+        <segue reference="GRx-13-28g"/>
     </inferredMetricsTieBreakers>
 </document>
