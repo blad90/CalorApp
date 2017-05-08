@@ -21,6 +21,10 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     
     var user = PFUser.current()
     
+    var infoTableVC = InfoTableVC()
+    var selectedFoodItem = ""
+    var selectedFoodCalorie = ""
+    
     @IBAction func logOutButton(_ sender: UIButton) {
         PFUser.logOut()
         performSegue(withIdentifier: "toLoginFromMealVC", sender: nil)
@@ -31,7 +35,13 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         let imagePickerController = UIImagePickerController()
         
         imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
+        } else {
+            imagePickerController.sourceType = UIImagePickerControllerSourceType.photoLibrary
+        }
+        
         imagePickerController.allowsEditing = false
         
         self.present(imagePickerController, animated: true, completion: nil)
@@ -50,9 +60,18 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         if user != nil {
             welcomeLabel.text = "Welcome \(String(describing: user!.username!))"
         }
-        
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        print(selectedFoodItem)
+        
+        if mealNameField.text == "" && caloriesField.text == "" {
+            mealNameField.text = selectedFoodItem
+            caloriesField.text = selectedFoodCalorie
+        }
+        
+    }
+    
     @IBAction func saveButton(_ sender: UIButton) {
         
         let foodItem = PFObject(className:"FoodList")
@@ -87,7 +106,9 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
             self.present(alert, animated: true)
         }
         
-        //foodItem["image"] = "N/A"
+        let imageData = UIImageJPEGRepresentation(foodImageView.image!, 0.005)
+        let imageFile = PFFile(name: "image.png", data: imageData!)
+        foodItem["image"] = imageFile
         
         foodItem.saveInBackground()
         

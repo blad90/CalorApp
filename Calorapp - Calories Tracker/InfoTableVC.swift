@@ -14,6 +14,8 @@ class InfoTableVC: UITableViewController {
     var foodNames : [String] = []
     var foodCalories : [String] = []
     var loginVC: LoginVC!
+    var foodItemSelectedName: String!
+    var foodItemSelectedCalorie: String!
     
     @IBAction func logOutButton(_ sender: UIBarButtonItem) {
         
@@ -45,11 +47,6 @@ class InfoTableVC: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return 1
-    }
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return foodNames.count
@@ -61,7 +58,6 @@ class InfoTableVC: UITableViewController {
     
         cell.textLabel?.text = foodNames[indexPath.row]
         cell.detailTextLabel?.text = "\(foodCalories[indexPath.row]) calories"
-        //cell.accessoryType = .disclosureIndicator
 
         return cell
     }
@@ -80,8 +76,10 @@ class InfoTableVC: UITableViewController {
             
         }
         
-        let foodItemSelectedName = currentCell.textLabel!.text
-        let foodItemSelectedCalorie = currentCell.detailTextLabel!.text
+        foodItemSelectedName = currentCell.textLabel!.text
+        foodItemSelectedCalorie = currentCell.detailTextLabel!.text
+        
+        performSegue(withIdentifier: "fromSuggestedToMealSegue", sender: self)
         
         print("Selected: \(String(describing: foodItemSelectedName!)) with \(String(describing: foodItemSelectedCalorie!))")
     }
@@ -121,14 +119,18 @@ class InfoTableVC: UITableViewController {
     }
     */
 
-    /*
-    // MARK: - Navigation
+    
+    
+     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "fromSuggestedToMealSegue" {
+            let mealVC = segue.destination as! MealVC
+            mealVC.selectedFoodItem = foodItemSelectedName
+            mealVC.selectedFoodCalorie = String(foodItemSelectedCalorie.characters.dropLast(9))
+        }
     }
-    */
-
 }

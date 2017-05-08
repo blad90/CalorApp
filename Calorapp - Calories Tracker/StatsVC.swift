@@ -17,12 +17,13 @@ class StatsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0]
+        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0,20.0, 4.0, 6.0, 3.0, 12.0, 16.0]
         
         setChart(dataPoints: months, values: unitsSold)
         lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        lineChartView.backgroundColor = UIColor(red: 112/255, green: 181/255, blue: 219/255, alpha: 0.5)
+        
         lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
     }
 
@@ -35,7 +36,7 @@ class StatsVC: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Units Sold")
+        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Total calories")
         let lineChartData = LineChartData()
         lineChartData.addDataSet(lineChartDataSet)
         lineChartView.data = lineChartData
