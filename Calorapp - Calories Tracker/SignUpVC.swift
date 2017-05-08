@@ -57,6 +57,12 @@ class SignUpVC: UIViewController {
                         alert.addAction(UIAlertAction(title: "Log In", style: .default) { action in
                             self.performSegue(withIdentifier: "toLoginSegue", sender: nil)
                         })
+                        
+                        alert.addAction(UIAlertAction(title: "Try again", style: .default) { action in
+                            
+                        })
+                        
+                        
                         self.present(alert, animated: true)
                         
                     }

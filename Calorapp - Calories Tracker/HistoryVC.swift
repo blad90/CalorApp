@@ -1,30 +1,26 @@
 //
-//  StatsVC.swift
+//  HistoryVC.swift
 //  Calorapp - Calories Tracker
 //
-//  Created by Bladimir Baez on 5/7/17.
+//  Created by Bladimir Baez on 5/8/17.
 //  Copyright © 2017 Apple Inc. All rights reserved.
 //
 
 import UIKit
 import Charts
 
-class StatsVC: UIViewController {
+class HistoryVC: UIViewController {
 
-    //@IBOutlet var barChartView: BarChartView!
-    @IBOutlet var lineChartView: LineChartView!
+    @IBOutlet var pieChartView: PieChartView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0]
+        let months = ["Pizza", "Sandwich", "Soup", "Salad", "Apple", "Orange Juice"]
+        let unitsSold = [987.0, 455.0, 221.0, 192.0, 203.0, 1903.0]
         
         setChart(dataPoints: months, values: unitsSold)
-        lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.backgroundColor = UIColor(red: 112/255, green: 181/255, blue: 219/255, alpha: 0.5)
-        
-        lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+        pieChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBack)
     }
 
     func setChart(dataPoints: [String], values: [Double]) {
@@ -36,10 +32,23 @@ class StatsVC: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "Total calories")
-        let lineChartData = LineChartData()
-        lineChartData.addDataSet(lineChartDataSet)
-        lineChartView.data = lineChartData
+        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Total Calories")
+        let pieChartData = PieChartData()
+        pieChartData.addDataSet(pieChartDataSet)
+        pieChartView.data = pieChartData
+        
+        var colors: [UIColor] = []
+        
+        for i in 0..<dataPoints.count {
+            let red = Double(arc4random_uniform(256))
+            let green = Double(arc4random_uniform(256))
+            let blue = Double(arc4random_uniform(256))
+            
+            let color = UIColor(red: CGFloat(red/255), green: CGFloat(green/255), blue: CGFloat(blue/255),  alpha: 1)
+            colors.append(color)
+        }
+        
+        pieChartDataSet.colors = colors
     }
     
     override func didReceiveMemoryWarning() {

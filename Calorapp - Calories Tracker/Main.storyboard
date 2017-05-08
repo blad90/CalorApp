@@ -704,7 +704,7 @@
         <!--History-->
         <scene sceneID="9gu-ED-Nub">
             <objects>
-                <viewController id="hcK-UF-AY8" sceneMemberID="viewController">
+                <viewController id="hcK-UF-AY8" customClass="HistoryVC" customModule="Calorapp___Calories_Tracker" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TPf-rS-ZId"/>
                         <viewControllerLayoutGuide type="bottom" id="guT-dU-Nu6"/>
@@ -722,6 +722,18 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Here you can see the total calories consumed for each food item." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13o-NT-kWd">
+                                <rect key="frame" x="16" y="106" width="343" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qih-l3-sW4" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="245" width="343" height="365"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.34252861220000003" green="0.65824134420000002" blue="0.91602574479999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -736,10 +748,13 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="History" image="eating.png" selectedImage="eating.png" id="GwW-XR-UeT"/>
+                    <connections>
+                        <outlet property="pieChartView" destination="Qih-l3-sW4" id="Ntj-hb-o4M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QzX-RM-zwi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="294.375" y="2049.2957746478874"/>
+            <point key="canvasLocation" x="293.60000000000002" y="2048.7256371814096"/>
         </scene>
         <!--Suggested-->
         <scene sceneID="WSF-Go-8yX">
