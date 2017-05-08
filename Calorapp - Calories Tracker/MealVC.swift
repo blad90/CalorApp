@@ -9,7 +9,7 @@
 import UIKit
 import Parse
 
-class MealVC: UIViewController {
+class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     @IBOutlet var mealNameField: UITextField!
     @IBOutlet var quantityField: UITextField!
@@ -17,6 +17,8 @@ class MealVC: UIViewController {
     @IBOutlet var caloriesField: UITextField!
     @IBOutlet var errorLabel: UILabel!
     @IBOutlet var welcomeLabel: UILabel!
+    @IBOutlet var foodImageView: UIImageView!
+    
     var user = PFUser.current()
     
     @IBAction func logOutButton(_ sender: UIButton) {
@@ -24,6 +26,25 @@ class MealVC: UIViewController {
         performSegue(withIdentifier: "toLoginFromMealVC", sender: nil)
         
     }
+    
+    @IBAction func importImage(_ sender: UIButton) {
+        let imagePickerController = UIImagePickerController()
+        
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = UIImagePickerControllerSourceType.camera
+        imagePickerController.allowsEditing = false
+        
+        self.present(imagePickerController, animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            foodImageView.image = image
+        } else {
+            print("Error while getting the image")
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         if user != nil {
@@ -33,24 +54,61 @@ class MealVC: UIViewController {
     }
 
     @IBAction func saveButton(_ sender: UIButton) {
-        // Creating the student
-        let student = PFObject(className:"Student")
-        student["name"] = "Jeff"
-        student["course"] = "SWEN-500"
         
-        // Creating the course
-        let course = PFObject(className:"Course")
-        course["course"] = "SWEN-500"
+        let foodItem = PFObject(className:"FoodList")
         
-        // Add a relation between the Student and Course
-        course["studentCourse"] = student
+        if mealNameField.text == "" { //Required field
+            let alert = UIAlertController(title: "Required field", message: "You need to provide a food item name.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            })
+            self.present(alert, animated: true)
+        } else {
+            foodItem["foodItem"] = mealNameField.text
+        }
+        if quantityField.text != "" { //Required field
+            foodItem["quantity"] = Int(quantityField.text!)
+        } else {
+            let alert = UIAlertController(title: "Required field", message: "You need to provide a quantity.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            })
+            self.present(alert, animated: true)
+        }
         
-        course.saveInBackground()
+        if categoryField.text != "" {
+            foodItem["category"] = categoryField.text
+        }
+        
+        if caloriesField.text != "" { //Required field
+            foodItem["calories"] = Int(caloriesField.text!)
+        } else {
+            let alert = UIAlertController(title: "Required field", message: "You need to provide the amount of calories.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            })
+            self.present(alert, animated: true)
+        }
+        
+        //foodItem["image"] = "N/A"
+        
+        foodItem.saveInBackground()
+        
+        let alert = UIAlertController(title: "Success", message: "Data saved to your records!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+          self.cleanUpFields()
+        })
+        self.present(alert, animated: true)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
+    
+    func cleanUpFields() {
+        mealNameField.text = ""
+        quantityField.text = ""
+        categoryField.text = ""
+        caloriesField.text = ""
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
