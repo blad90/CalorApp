@@ -75,7 +75,6 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     @IBAction func saveButton(_ sender: UIButton) {
         //print("---The user is \(user!)")
         let foodItem = PFObject(className: "FoodList")
-        user!.setObject(foodItem, forKey: "username")
         
         if mealNameField.text == "" { //Required field
             let alert = UIAlertController(title: "Required field", message: "You need to provide a food item name.", preferredStyle: .alert)
@@ -84,6 +83,7 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
             self.present(alert, animated: true)
         } else {
             foodItem["foodItem"] = mealNameField.text
+            foodItem["user"] = user
         }
         if quantityField.text != "" { //Required field
             foodItem["quantity"] = Int(quantityField.text!)
@@ -106,13 +106,13 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
             })
             self.present(alert, animated: true)
         }
-        
+ 
         let imageData = UIImageJPEGRepresentation(foodImageView.image!, 0.005)
         let imageFile = PFFile(name: "image.png", data: imageData!)
         foodItem["image"] = imageFile
         
         foodItem.saveInBackground()
-  
+        
         let alert = UIAlertController(title: "Success", message: "Data saved to your records!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
           self.cleanUpFields()

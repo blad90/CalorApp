@@ -8,23 +8,76 @@
 
 import UIKit
 import Charts
+import Parse
 
 class StatsVC: UIViewController {
 
-    //@IBOutlet var barChartView: BarChartView!
+    var monthString: String! = ""
+    var originalMonths: [String] = []
+    var months: [String] = []
+    var convertedMonth = ""
+    var calorieString: String! = ""
+    var calorieUnits: [Double] = []
+    var convertedCalorie: Double = 0.0
+    
     @IBOutlet var lineChartView: LineChartView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let query = PFQuery(className:"FoodList")
+        query.whereKey("user", equalTo: PFUser.current()!)
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil {
+                
+                for object in objects! {
+                    
+                    self.monthString = String(describing: object.createdAt!)
+                    self.calorieString = NSString(format: "%@", object["calories"] as! CVarArg) as String
+                    
+                    print(self.calorieString)
+                    
+                    if let match = self.monthString.range(of: "(?<=-)[^-]+", options: .regularExpression) {
+                        self.convertedMonth = self.monthString.substring(with: match)
+                        self.originalMonths.append(self.convertedMonth)
+                        
+                        self.convertedCalorie = Double(self.calorieString)!
+                        self.calorieUnits.append(self.convertedCalorie)
+                        
+                        self.months = self.originalMonths
+                    }
+                }
+                
+                  self.setChart(dataPoints: self.months, values: self.calorieUnits)
+                  self.lineChartView.xAxis.labelPosition = .bottom
+                  self.lineChartView.backgroundColor = UIColor(red: 112/255, green: 181/255, blue: 219/255, alpha: 0.5)
+                  self.lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
 
-        let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
-        let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 16.0]
-        
-        setChart(dataPoints: months, values: unitsSold)
-        lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.backgroundColor = UIColor(red: 112/255, green: 181/255, blue: 219/255, alpha: 0.5)
-        
-        lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+            } else {
+                print(error?.localizedDescription)
+            }
+        }
+
+        /*let query = PFQuery(className:"FoodList")
+        query.getObjectInBackground(withId: "8D6dIWUmps") {
+            (item: PFObject?, error) -> Void in
+            self.monthString = String(describing: item!.createdAt!)
+            
+            if let match = self.monthString.range(of: "(?<=-)[^-]+", options: .regularExpression) {
+                let convertedMonth = self.monthString.substring(with: match)
+                self.originalMonths.append(convertedMonth)
+                
+                self.months = self.originalMonths
+                self.calorieUnits = [320.0,43.0]
+                
+                self.setChart(dataPoints: self.months, values: self.calorieUnits)
+                self.lineChartView.xAxis.labelPosition = .bottom
+                self.lineChartView.backgroundColor = UIColor(red: 112/255, green: 181/255, blue: 219/255, alpha: 0.5)
+                
+                self.lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
+            }
+            
+        }*/
     }
 
     func setChart(dataPoints: [String], values: [Double]) {
