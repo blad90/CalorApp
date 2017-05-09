@@ -19,8 +19,17 @@ class StatsVC: UIViewController {
     var calorieString: String! = ""
     var calorieUnits: [Double] = []
     var convertedCalorie: Double = 0.0
+    var totalCalories: Double = 0.0
     
     @IBOutlet var lineChartView: LineChartView!
+    
+    func sum(_ calories: [Double]) -> Double {
+        var sum: Double = 0.0
+        for cal in calories {
+            sum += cal
+        }
+        return sum
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,20 +44,20 @@ class StatsVC: UIViewController {
                     self.monthString = String(describing: object.createdAt!)
                     self.calorieString = NSString(format: "%@", object["calories"] as! CVarArg) as String
                     
-                    print(self.calorieString)
-                    
                     if let match = self.monthString.range(of: "(?<=-)[^-]+", options: .regularExpression) {
                         self.convertedMonth = self.monthString.substring(with: match)
                         self.originalMonths.append(self.convertedMonth)
                         
                         self.convertedCalorie = Double(self.calorieString)!
-                        self.calorieUnits.append(self.convertedCalorie)
                         
+                        self.calorieUnits.append(self.convertedCalorie)
+                        self.totalCalories = self.sum(self.calorieUnits)
+                        print(self.totalCalories)
                         self.months = self.originalMonths
                     }
                 }
                 
-                  self.setChart(dataPoints: self.months, values: self.calorieUnits)
+                  self.setChart(dataPoints: self.months, values: [self.totalCalories])
                   self.lineChartView.xAxis.labelPosition = .bottom
                   self.lineChartView.backgroundColor = UIColor(red: 112/255, green: 181/255, blue: 219/255, alpha: 0.5)
                   self.lineChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBounce)
@@ -84,7 +93,7 @@ class StatsVC: UIViewController {
         
         var dataEntries: [ChartDataEntry] = []
         
-        for i in 0..<dataPoints.count {
+        for i in 0..<values.count {
             let dataEntry = ChartDataEntry(x: Double(i), y:values[i])
             dataEntries.append(dataEntry)
         }

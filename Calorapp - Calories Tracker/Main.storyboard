@@ -332,9 +332,7 @@
                             <outlet property="delegate" destination="B1C-nU-BdN" id="PnY-zI-iCF"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Suggested list" id="Jmb-sH-j40">
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="wXj-zF-8Xg"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Suggested list" id="Jmb-sH-j40"/>
                     <connections>
                         <segue destination="ak5-VE-axs" kind="show" identifier="fromSuggestedToMealSegue" id="bi4-s9-pb9"/>
                     </connections>

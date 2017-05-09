@@ -8,20 +8,45 @@
 
 import UIKit
 import Charts
+import Parse
 
 class HistoryVC: UIViewController {
 
+    
     @IBOutlet var pieChartView: PieChartView!
+    var foodItem = ""
+    var foodItems: [String] = []
+    var calorieString = ""
+    var calorie = 0.0
+    var calories: [Double] = []
+    var foodNames: [String] = []
+    var foodCalories: [Double] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let months = ["Pizza", "Sandwich", "Soup", "Salad", "Apple", "Orange Juice"]
-        let unitsSold = [987.0, 455.0, 221.0, 192.0, 203.0, 1903.0]
         
-        setChart(dataPoints: months, values: unitsSold)
-        pieChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBack)
+        let query = PFQuery(className:"FoodList")
+        query.whereKey("user", equalTo: PFUser.current()!)
+        query.findObjectsInBackground { (objects, error) in
+            if error == nil {
+                
+                for object in objects! {
+                    self.foodItem = NSString(format: "%@", object["foodItem"] as! CVarArg) as String
+                    self.calorieString = NSString(format: "%@", object["calories"] as! CVarArg) as String
+                    self.calorie = Double(self.calorieString)!
+                    
+                    self.foodItems.append(self.foodItem)
+                    self.calories.append(self.calorie)
+                    }
+                }
+        
+        self.foodNames = self.foodItems
+        self.foodCalories = self.calories
+        
+        self.setChart(dataPoints: self.foodNames, values: self.foodCalories)
+        self.pieChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBack)
     }
+}
 
     func setChart(dataPoints: [String], values: [Double]) {
         
