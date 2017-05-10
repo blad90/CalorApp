@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import SystemConfiguration
 
 class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
@@ -19,8 +20,8 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     @IBOutlet var welcomeLabel: UILabel!
     @IBOutlet var foodImageView: UIImageView!
     
-    var user = PFUser.current()
-    
+    let user = PFUser.current()
+    let connectivity = Connectivity()
     var infoTableVC = InfoTableVC()
     var selectedFoodItem = ""
     var selectedFoodCalorie = ""
@@ -57,6 +58,14 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !connectivity.isInternetAvailable() {
+            let alert = UIAlertController(title: "Network error", message: "Check your Internet connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            })
+            self.present(alert, animated: true)
+        }
+        
         if user != nil {
             welcomeLabel.text = "Welcome \(String(describing: user!.username!))"
         }
@@ -84,9 +93,17 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         } else {
             foodItem["foodItem"] = mealNameField.text
             foodItem["user"] = user
+            
+            let date = Date()
+            let calendar = Calendar.current
+            let dateComponents = calendar.dateComponents([.year, .month, .day], from: date)
+            foodItem["monthCreated"] = String(describing: dateComponents.month!)
         }
         if quantityField.text != "" { //Required field
+            
+            
             foodItem["quantity"] = Int(quantityField.text!)
+            
         } else {
             let alert = UIAlertController(title: "Required field", message: "You need to provide a quantity.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
@@ -99,7 +116,13 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         }
         
         if caloriesField.text != "" { //Required field
-            foodItem["calories"] = Int(caloriesField.text!)
+            if quantityField.text != String(1) {
+                foodItem["calories"] = Int(caloriesField.text!)! * Int(quantityField.text!)!
+            } else {
+                foodItem["calories"] = Int(caloriesField.text!)
+            }
+            
+            
         } else {
             let alert = UIAlertController(title: "Required field", message: "You need to provide the amount of calories.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
@@ -111,11 +134,16 @@ class MealVC: UIViewController, UINavigationControllerDelegate, UIImagePickerCon
         let imageFile = PFFile(name: "image.png", data: imageData!)
         foodItem["image"] = imageFile
         
-        foodItem.saveInBackground()
+        if mealNameField.text != "" && caloriesField.text != "" {
+            foodItem.saveInBackground()
+        }
+        
         
         let alert = UIAlertController(title: "Success", message: "Data saved to your records!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
-          self.cleanUpFields()
+    
+            self.cleanUpFields()
+            
         })
         self.present(alert, animated: true)
     }

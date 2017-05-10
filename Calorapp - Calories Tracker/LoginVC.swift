@@ -8,10 +8,12 @@
 
 import UIKit
 import Parse
+import SystemConfiguration
 
 class LoginVC: UIViewController {
 
     var currentUser = PFUser.current()
+    let connectivity = Connectivity()
     @IBOutlet var usernameField: UITextField!
     @IBOutlet var passwordField: UITextField!
     
@@ -93,6 +95,13 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if !connectivity.isInternetAvailable() {
+            let alert = UIAlertController(title: "Network error", message: "Check your Internet connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            })
+            self.present(alert, animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {

@@ -36,14 +36,55 @@ class SignUpVC: UIViewController {
     
     func signUp() {
             let user = PFUser()
-            user["fullName"] = fullNameField.text
+            if fullNameField.text == "" { //Required field
+            let alert = UIAlertController(title: "Required field", message: "You need to provide your name.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            })
+            self.present(alert, animated: true)
+            }else{
+             user["fullName"] = fullNameField.text
+            }
+        
+        if usernameField.text != "" { //Required field
             user.username = usernameField.text
+        } else {
+            let alert = UIAlertController(title: "Required field", message: "You need to provide a username.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            })
+            self.present(alert, animated: true)
+        }
+        
+        if passwordField.text != "" { //Required field
             user.password = passwordField.text
+        } else {
+            let alert = UIAlertController(title: "Required field", message: "You need to provide a password.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            })
+            self.present(alert, animated: true)
+        }
+        
+        if emailField.text != "" { //Required field
             user.email = emailField.text
+        } else {
+            let alert = UIAlertController(title: "Required field", message: "You need to put your email.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
+            })
+            self.present(alert, animated: true)
+        }
+        
+        if dateOfBirthField.text == "" {
+            user["dateOfBirth"] = "N/A"
+        } else{
             user["dateOfBirth"] = dateOfBirthField.text
+        }
+        
+        if countryField.text == "" {
+            user["country"] = "N/A"
+        } else{
             user["country"] = countryField.text
-            
-            user.signUpInBackground { (success, error) in
+        }
+        
+        user.signUpInBackground { (success, error) in
                 
                 if error != nil {
                     

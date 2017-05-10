@@ -24,28 +24,30 @@ class HistoryVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let query = PFQuery(className:"FoodList")
         query.whereKey("user", equalTo: PFUser.current()!)
         query.findObjectsInBackground { (objects, error) in
             if error == nil {
                 
                 for object in objects! {
+                    
                     self.foodItem = NSString(format: "%@", object["foodItem"] as! CVarArg) as String
                     self.calorieString = NSString(format: "%@", object["calories"] as! CVarArg) as String
                     self.calorie = Double(self.calorieString)!
                     
                     self.foodItems.append(self.foodItem)
                     self.calories.append(self.calorie)
-                    }
                 }
+            }
+            
+            self.foodNames = self.foodItems
+            self.foodCalories = self.calories
+            
+            self.setChart(dataPoints: self.foodNames, values: self.foodCalories)
+            self.pieChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBack)
+            self.pieChartView.chartDescription?.text = "";
+        }
         
-        self.foodNames = self.foodItems
-        self.foodCalories = self.calories
-        
-        self.setChart(dataPoints: self.foodNames, values: self.foodCalories)
-        self.pieChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0, easingOption: .easeInBack)
-    }
 }
 
     func setChart(dataPoints: [String], values: [Double]) {
@@ -57,7 +59,7 @@ class HistoryVC: UIViewController {
             dataEntries.append(dataEntry)
         }
         
-        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Total Calories")
+        let pieChartDataSet = PieChartDataSet(values: dataEntries, label: "Calories")
         let pieChartData = PieChartData()
         pieChartData.addDataSet(pieChartDataSet)
         pieChartView.data = pieChartData
@@ -75,6 +77,7 @@ class HistoryVC: UIViewController {
         
         pieChartDataSet.colors = colors
     }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

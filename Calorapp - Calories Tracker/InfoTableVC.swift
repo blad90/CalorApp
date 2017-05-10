@@ -66,16 +66,6 @@ class InfoTableVC: UITableViewController {
         let index = tableView.indexPathForSelectedRow
         let currentCell = tableView.cellForRow(at: index!)!
         
-        if let cell = tableView.cellForRow(at: indexPath) {
-            
-            if cell.accessoryType == .checkmark {
-                cell.accessoryType = .none
-            } else {
-                cell.accessoryType = .checkmark
-            }
-            
-        }
-        
         foodItemSelectedName = currentCell.textLabel!.text
         foodItemSelectedCalorie = currentCell.detailTextLabel!.text
         
